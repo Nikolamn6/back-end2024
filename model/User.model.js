@@ -35,6 +35,11 @@ export const UserSchema = new mongoose.Schema({
         required: true,
         default: false,
       },
+    // adminRole: {
+    //     type: Boolean,
+    //     required: true,
+    //     default: false,
+    //   },
 }
 // ,{collection: ""}
 );

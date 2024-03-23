@@ -131,7 +131,8 @@ export async function login(req,res){
                         return res.status(200).send({
                             msg: "Успешно влизане!",
                             username: user.username,
-                            token
+                            // adminRole,
+                            token,
                         });                                    
 
                     })
@@ -292,6 +293,22 @@ export async function postBlog(req, res) {
     }
   };
 
+  export async function getBlogs(req,res){
+    
+    // const { username } = req.params;
+
+    try {
+
+      const getBlogData = await PostModel.find();
+      res.json(getBlogData);
+
+    } catch (error) {
+      console.error(error);
+        return res.status(404).send({ error : "Cannot Find User Data"});
+    }
+
+}
+
 
 //   GALLERY
 
@@ -315,6 +332,22 @@ export async function postBlog(req, res) {
         res.status(500).send({error});
     }
   }
+
+  export async function getGallery(req,res){
+    
+    // const { username } = req.params;
+
+    try {
+
+      const galleryData = await GaleryModel.find();
+      res.json(galleryData);
+
+    } catch (error) {
+      console.error(error);
+        return res.status(404).send({ error : "Cannot Find User Data"});
+    }
+
+}
 
 // CHAT _________
 

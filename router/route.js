@@ -41,6 +41,9 @@ const storageOne = multer.diskStorage({
 const uploadBlog = multer({ storage: storageOne });
 router.route('/postBlog').post(uploadBlog.single('image'), controller.postBlog);
 
+// GET*
+router.route('/getBlogs').get(controller.getBlogs);
+
 // GALLERY_______________________________________________
 const storageTwo = multer.diskStorage({
     destination: function (req, file, cb){
@@ -54,6 +57,9 @@ const storageTwo = multer.diskStorage({
 
 const uploadImageG = multer({ storage: storageTwo });
 router.route('/postGallery').post(uploadImageG.single('image'), controller.postGallery);
+
+// GET*
+router.route('/getGallery').get(controller.getGallery);
 
 // CHAT________________________________________________
 

@@ -8,10 +8,10 @@ import ENV from '../config.js';
 let nodeConfig = {
     host: "smtp.ethereal.email",
     port: 587,
-    secure: false, // true for 465, false for other ports
+    secure: false,
     auth: {
-        user: ENV.EMAIL, // generated ethereal user
-        pass: ENV.PASSWORD, // generated ethereal password
+        user: ENV.EMAIL,
+        pass: ENV.PASSWORD,
     }
 }
 
@@ -30,7 +30,7 @@ export const registerMail = async (req, res) => {
 
     var email = {
         body : {
-            name: username,
+            name: username || 'koko',
             intro : text || 'Welcome to Daily Tuition! We\'re very excited to have you on board.',
             outro: 'Need help, or have questions? Just reply to this email, we\'d love to help.'
         }
@@ -49,6 +49,11 @@ export const registerMail = async (req, res) => {
         .then(() => {
             return res.status(200).send({ msg: "You should receive an email from us."})
         })
-        .catch(error => res.status(500).send({ error }))
+        .catch(error => {
+            console.error("Error sending email:", error);
+            return res.status(500).send({ error });
+
+            // res.status(500).send({ error }))
+        })
 
 }
